@@ -1,0 +1,44 @@
+.navbar {
+  height: 50px;
+  background-color: #f14e4c;
+  display: flex;
+  justify-content: center;
+}
+
+.navContainer {
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 500;
+}
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.cartIcon {
+  cursor: pointer;
+}
+
+.cartNumber {
+  padding: 0 5px;
+  background-color: #333;
+  font-size: 10px;
+  color: #fff;
+  position: relative;
+  top: -8px;
+  right:15px;
+  border-radius: 50px;
+}
