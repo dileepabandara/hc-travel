@@ -11,12 +11,11 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import logo from "../../assets/logo_r.png";
 
 const Sidebar = () => {
   const { user } = useContext(AuthContext);
   const isAdmin = user && user.role === "Admin";
-  // console.log(isAdmin);
-  // console.log(user);
 
   const { dispatch } = useContext(AuthContext);
 
@@ -28,7 +27,8 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">HolidayCentral</span>
+          <img src={logo} alt="" className="logo" />
+          <span className="logoName">HolidayCentral</span>
         </Link>
       </div>
       <hr />
@@ -52,19 +52,6 @@ const Sidebar = () => {
               </Link>
             </>
           )}
-          <p className="title">Hotels</p>
-          <Link to="/hotels" style={{ textDecoration: "none" }}>
-            <li>
-              <FoodBankIcon className="icon" />
-              <span>Hotels</span>
-            </li>
-          </Link>
-          <Link to="/rooms" style={{ textDecoration: "none" }}>
-            <li>
-              <SingleBedIcon className="icon" />
-              <span>Rooms</span>
-            </li>
-          </Link>
           <p className="title">Flights</p>
           <Link to="/flights" style={{ textDecoration: "none" }}>
             <li>
@@ -76,6 +63,19 @@ const Sidebar = () => {
             <li>
               <AirlineSeatReclineExtraIcon className="icon" />
               <span>Seats</span>
+            </li>
+          </Link>
+          <p className="title">Hotels</p>
+          <Link to="/hotels" style={{ textDecoration: "none" }}>
+            <li>
+              <FoodBankIcon className="icon" />
+              <span>Hotels</span>
+            </li>
+          </Link>
+          <Link to="/rooms" style={{ textDecoration: "none" }}>
+            <li>
+              <SingleBedIcon className="icon" />
+              <span>Rooms</span>
             </li>
           </Link>
           <p className="title">Packages</p>
@@ -96,16 +96,6 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      {/* <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
-      </div> */}
     </div>
   );
 };

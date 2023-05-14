@@ -3,7 +3,7 @@ import "./featured.css";
 
 const Featured = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:8090/api/packages/countbypackage?packages=Honeymoon,Beach holiday,Wildlife excursion,Family Holiday"
+    "http://localhost:8090/api/packages/countbypackage?packages=Honeymoon,Beach holiday,Family Holiday"
   );
 
   console.log(data);
@@ -36,17 +36,7 @@ const Featured = () => {
               <h2>{data[1]} packages</h2>
             </div>
           </div>
-          <div className="featuredItem">
-            <img
-              src="https://images.pexels.com/photos/2862070/pexels-photo-2862070.jpeg?auto=compress&cs=tinysrgb&w=800"
-              alt=""
-              className="featuredImg"
-            />
-            <div className="featuredTitles">
-              <h2>Wildlife Excursion</h2>
-              <h2>{data[2]} packages</h2>
-            </div>
-          </div>
+
           <div className="featuredItem">
             <img
               src="https://images.pexels.com/photos/5727775/pexels-photo-5727775.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -55,7 +45,7 @@ const Featured = () => {
             />
             <div className="featuredTitles">
               <h2>Family Holiday</h2>
-              <h2>{data[0]} packages</h2>
+              <h2>{data[2]} packages</h2>
             </div>
           </div>
         </>

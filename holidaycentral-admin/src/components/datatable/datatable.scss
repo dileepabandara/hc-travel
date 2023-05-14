@@ -1,8 +1,8 @@
 .datatable {
   height: 600px;
   padding: 20px;
-  
-  .datatableTitle{
+
+  .datatableTitle {
     width: 100%;
     font-size: 24px;
     color: gray;
@@ -10,25 +10,26 @@
     display: flex;
     align-items: center;
 
-    .TitleName{
+    .TitleName {
       font-weight: 600;
       color: black;
       width: 100px;
     }
 
-    .link{
+    .link {
       text-decoration: none;
-      color: green;
+      color: #4c5ff1;
       font-size: 16px;
       font-weight: 400;
-      border: 1px solid green;
+      border: 1px solid #4c5ff1;
       padding: 5px;
       border-radius: 5px;
       margin-left: 20px;
-      cursor: pointer;
-      :hover{
-        background-color: rgba(255, 0, 0, 0.05);
+      // add hover effect
+      &:hover {
+        background-color: rgba(0, 2, 128, 0.05);
       }
+      cursor: hand;
     }
   }
 
@@ -62,6 +63,57 @@
       color: rgb(221, 4, 48);
     }
   }
+  .cellWithType {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Hotel {
+      background-color: rgba(0, 32, 128, 0.05);
+      color: rgb(0, 60, 128);
+    }
+    &.Apartment {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.Resorts {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: rgb(221, 4, 48);
+    }
+    &.Villas {
+      background-color: rgba(0, 255, 17, 0.05);
+      color: rgb(4, 221, 33);
+    }
+    &.Cabins {
+      background-color: rgba(162, 0, 255, 0.05);
+      color: rgb(134, 4, 221);
+    }
+  }
+
+  .cellWithSpecialty {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Honeymoon {
+      background-color: rgba(0, 32, 128, 0.05);
+      color: rgb(0, 60, 128);
+    }
+    &.BeachHoliday {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.WildlifeExcursion {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: rgb(221, 4, 48);
+    }
+    &.FamilyHoliday {
+      background-color: rgba(162, 0, 255, 0.05);
+      color: rgb(134, 4, 221);
+    }
+    &.Desert {
+      background-color: rgba(0, 255, 17, 0.05);
+      color: rgb(4, 221, 33);
+    }
+  }
 
   .cellAction {
     display: flex;
@@ -74,14 +126,20 @@
       color: darkblue;
       border: 1px dotted rgba(0, 0, 139, 0.596);
       cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 2, 128, 0.05);
+      }
     }
-    
+
     .deleteButton {
       padding: 2px 5px;
       border-radius: 5px;
       color: crimson;
       border: 1px dotted rgba(220, 20, 60, 0.6);
       cursor: pointer;
+      &:hover {
+        background-color: rgba(128, 0, 0, 0.05);
+      }
     }
   }
 }

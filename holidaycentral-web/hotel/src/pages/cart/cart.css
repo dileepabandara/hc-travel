@@ -1,0 +1,50 @@
+.cart-item {
+  margin: 50px 205px;
+  border: #333 solid;
+  padding: 10px;
+}
+
+.p1 {
+  color: #f14e4c;
+  padding-bottom: 10px;
+}
+
+.p2 {
+  padding-bottom: 3px;
+}
+
+.p3 {
+  padding-bottom: 3px;
+}
+
+.p4 {
+  padding-bottom: 10px;
+}
+
+.btn {
+  background: #f14e4c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #cd3d3a;
+}
+
+.btnCheckout {
+  margin: 0 205px;
+  background: #f14e4c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btnCheckout:hover {
+  background: #cd3d3a;
+}

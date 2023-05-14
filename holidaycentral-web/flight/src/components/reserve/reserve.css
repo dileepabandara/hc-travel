@@ -52,7 +52,7 @@
   font-weight: 500;
 }
 
-.rSelectRooms {
+.rSelectseat {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;

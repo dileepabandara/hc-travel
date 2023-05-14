@@ -1,0 +1,242 @@
+.singleFlight {
+  display: flex;
+  width: 100%;
+  .singleContainer {
+    flex: 6;
+
+    .top {
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+
+      .left {
+        flex: 1;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 20px;
+        position: relative;
+
+        .item {
+          display: flex;
+          gap: 20px;
+
+          .itemImg {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+          }
+
+          .details {
+            .itemTitle {
+              margin-bottom: 10px;
+              color: #555;
+            }
+
+            .detailItem {
+              margin-bottom: 10px;
+              margin-right: 10px;
+              font-size: 14px;
+
+              .itemKey {
+                font-weight: bold;
+                color: gray;
+                margin-right: 5px;
+              }
+
+              .itemValue {
+                font-weight: 300;
+              }
+            }
+
+            .detailItemList {
+              list-style-type: circle;
+              padding-top: 5px;
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .middle {
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+
+      .left {
+        flex: 1;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 20px;
+        position: relative;
+
+        .imageList {
+          display: flex;
+          gap: 20px;
+
+          .itemImg {
+            width: 100px;
+            height: 100px;
+            border-radius: 5%;
+            object-fit: cover;
+            margin-right: 10px;
+            cursor: pointer;
+          }
+
+          .details {
+            .itemTitle {
+              margin-bottom: 10px;
+              color: #555;
+            }
+
+            .detailItem {
+              margin-bottom: 10px;
+              margin-right: 10px;
+              font-size: 14px;
+
+              .itemKey {
+                font-weight: bold;
+                color: gray;
+                margin-right: 5px;
+              }
+
+              .itemValue {
+                font-weight: 300;
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        flex: 2;
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      color: rgb(139, 139, 139);
+      margin-bottom: 20px;
+    }
+  }
+
+  .newContainer {
+    flex: 6;
+
+    .bottom {
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 10px;
+      margin: 20px;
+      display: flex;
+
+      h1 {
+        color: rgb(139, 139, 139);
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .left {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+
+        img {
+          width: 200px;
+          height: 200px;
+          border-radius: 5%;
+          object-fit: cover;
+          margin-bottom: 10px;
+        }
+
+        .icon {
+          cursor: pointer;
+        }
+        .remove {
+          background-color: #d0d0d0;
+          color: rgb(39, 39, 39);
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+      }
+
+      .right {
+        flex: 2;
+        padding: 20px;
+
+        form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: space-between;
+
+          .selectFeatured {
+            width: 40%;
+            padding: 5px;
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              .icon {
+                cursor: pointer;
+              }
+            }
+          }
+
+          .selectSeats {
+            width: 250%;
+
+            select {
+              width: 100%;
+              padding: 5px;
+            }
+          }
+
+          .formInput {
+            width: 40%;
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              .icon {
+                cursor: pointer;
+              }
+            }
+
+            input {
+              width: 100%;
+              padding: 5px;
+              margin-bottom: 20px;
+              border: none;
+              border-bottom: 1px solid gray;
+            }
+          }
+        }
+
+        button {
+          width: 150px;
+          padding: 10px;
+          border: none;
+          background-color: #f14e4c;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 10px;
+          border-radius: 5px;
+        }
+        .updatingStatus {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

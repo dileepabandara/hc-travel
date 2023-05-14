@@ -10,6 +10,7 @@ const NewHotel = ({ inputs, title }) => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [updatingStatus, setUpdatingStatus] = useState("Ready to create!");
 
   const { data, loading } = useFetch("/rooms");
 
@@ -27,8 +28,75 @@ const NewHotel = ({ inputs, title }) => {
 
   console.log(files);
 
+  // Validation
+  const validate = () => {
+    if (!info.name) {
+      setUpdatingStatus("Name is required!");
+      return false;
+    }
+    if (!info.title) {
+      setUpdatingStatus("Title is required!");
+      return false;
+    }
+    if (!info.description) {
+      setUpdatingStatus("Description is required!");
+      return false;
+    }
+    if (!info.type) {
+      setUpdatingStatus("Type is required!");
+      return false;
+    }
+    if (!info.city) {
+      setUpdatingStatus("City is required!");
+      return false;
+    }
+    if (!info.address) {
+      setUpdatingStatus("Address is required!");
+      return false;
+    }
+    if (!info.facilities) {
+      setUpdatingStatus("Facilities is required!");
+      return false;
+    }
+    if (!info.stars) {
+      setUpdatingStatus("Stars is required!");
+      return false;
+    }
+    // stars are numbers
+    if (isNaN(info.stars)) {
+      setUpdatingStatus("Stars must be a number!");
+      return false;
+    }
+    if (!info.price) {
+      setUpdatingStatus("Price is required!");
+      return false;
+    }
+    // price are numbers
+    if (isNaN(info.price)) {
+      setUpdatingStatus("Price must be a number!");
+      return false;
+    }
+    if (!info.featured) {
+      setUpdatingStatus("Featured is required!");
+      return false;
+    }
+    if (rooms.length === 0) {
+      setUpdatingStatus("Room type is required!");
+      return false;
+    }
+    if (!files) {
+      setUpdatingStatus("Photos are required!");
+      return false;
+    }
+    return true;
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(info);
+    console.log(rooms);
+    if (!validate()) return;
+    setUpdatingStatus("Creating hotel...");
     try {
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
@@ -52,19 +120,45 @@ const NewHotel = ({ inputs, title }) => {
       };
 
       await axios.post("/hotels", newHotel);
+      setUpdatingStatus("Hotel has been created!");
     } catch (err) {
       console.log(err);
+      setUpdatingStatus(err.response.data.message);
     }
   };
 
+  // console.log(info);
+
   return (
-    <div className="new">
+    <div className="newHotel">
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        {/* <div className="top">
-          <h1>{title}</h1>
-        </div> */}
+        {/* TOP */}
+        <div className="top">
+          <div className="left">
+            <h1>Uploaded Images</h1>
+            <div className="imageList">
+              {files &&
+                Array.from(files).map((file) => (
+                  <img
+                    className="itemImg"
+                    src={URL.createObjectURL(file)}
+                    alt=""
+                    key={file.name}
+                    onClick={() => {
+                      const newWindow = window.open(
+                        URL.createObjectURL(file),
+                        "_blank"
+                      );
+                      newWindow.focus();
+                    }}
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
+        {/* BOTTOM */}
         <div className="bottom">
           <div className="left">
             <h1>{title}</h1>
@@ -88,6 +182,16 @@ const NewHotel = ({ inputs, title }) => {
                 onChange={(e) => setFiles(e.target.files)}
                 style={{ display: "none" }}
               />
+            </div>
+            <div className="formInput">
+              <button
+                className="remove"
+                onClick={() => {
+                  setFiles("");
+                }}
+              >
+                Remove All Images
+              </button>
             </div>
           </div>
           <div className="right">
@@ -123,8 +227,10 @@ const NewHotel = ({ inputs, title }) => {
                       ))}
                 </select>
               </div>
-              <button onClick={handleClick}>Create Room</button>
+              <button onClick={handleClick}>Create Hotel</button>
             </form>
+            <br />
+            <p className="updatingStatus">{updatingStatus}</p>
           </div>
         </div>
       </div>

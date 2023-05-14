@@ -7,16 +7,17 @@ import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { addProduct } from "../../redux/cartRedux";
-import { useDispatch } from "react-redux";
+import { ReserveContext } from "../../context/ReserveContext";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const dispatch = useDispatch();
   const { data, loading, error } = useFetch(
     `http://localhost:8090/api/hotels/room/${hotelId}`
   );
+  console.log(data);
   const { dates } = useContext(SearchContext);
+  const { cartItems, cartCount, addToCart, removeItem, total } =
+    useContext(ReserveContext);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -95,7 +96,7 @@ const Reserve = ({ setOpen, hotelId }) => {
               <div className="rMax">
                 Max people: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="rPrice">${item.price}</div>
             </div>
             <div className="rSelectRooms">
               {item.roomNumbers.map((roomNumber) => (
@@ -110,11 +111,11 @@ const Reserve = ({ setOpen, hotelId }) => {
                 </div>
               ))}
             </div>
+            <button onClick={() => addToCart(item)} className="rButton">
+              Reserve Now!
+            </button>
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
-          Reserve Now!
-        </button>
       </div>
     </div>
   );

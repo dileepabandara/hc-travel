@@ -11,11 +11,18 @@
   width: 400px;
 }
 
+.lImg {
+  width: 10%;
+  height: 10%;
+  object-fit: cover;
+  padding-top: 80px;
+}
+
 .lTitle {
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 20px;
 }
 
 .lInput {
@@ -28,7 +35,7 @@
 .lButton {
   border: none;
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #f14e4c;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -38,6 +45,6 @@
 }
 
 .lButton:disabled {
-  background-color: #0071c28c;
+  background-color: #f14e4c8c;
   cursor: not-allowed;
 }

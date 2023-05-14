@@ -8,7 +8,7 @@ import axios from "axios";
 const NewPackage = ({ inputs, title }) => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
-  const [facilities, setFacilities] = useState([]);
+  const [updatingStatus, setUpdatingStatus] = useState("Ready to create!");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -16,8 +16,64 @@ const NewPackage = ({ inputs, title }) => {
 
   console.log(files);
 
+  // Validation
+  const validate = () => {
+    if (!info.name) {
+      setUpdatingStatus("Name is required!");
+      return false;
+    }
+    if (!info.description) {
+      setUpdatingStatus("Description is required!");
+      return false;
+    }
+    if (!info.destination) {
+      setUpdatingStatus("Destination is required!");
+      return false;
+    }
+    if (!info.duration) {
+      setUpdatingStatus("Duration is required!");
+      return false;
+    }
+    if (!info.travelers) {
+      setUpdatingStatus("No. of travelers are required!");
+      return false;
+    }
+    if (!info.specialty) {
+      setUpdatingStatus("Specialty is required!");
+      return false;
+    }
+    if (!info.price) {
+      setUpdatingStatus("Price is required!");
+      return false;
+    }
+    if (isNaN(info.price)) {
+      setUpdatingStatus("Price must be a number!");
+      return false;
+    }
+    if (!info.rating) {
+      setUpdatingStatus("Rating is required!");
+      return false;
+    }
+    if (isNaN(info.rating)) {
+      setUpdatingStatus("Rating must be a number!");
+      return false;
+    }
+    if (!info.featured) {
+      setUpdatingStatus("Featured is required!");
+      return false;
+    }
+    if (!files) {
+      setUpdatingStatus("Photos are required!");
+      return false;
+    }
+    return true;
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(info);
+    if (!validate()) return;
+    setUpdatingStatus("Creating package...");
     try {
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
@@ -36,24 +92,47 @@ const NewPackage = ({ inputs, title }) => {
 
       const newPackage = {
         ...info,
-        facilities,
         photos: list,
       };
 
       await axios.post("/packages", newPackage);
+      setUpdatingStatus("Package has been created!");
     } catch (err) {
       console.log(err);
+      setUpdatingStatus(err.response.data);
     }
   };
 
   return (
-    <div className="new">
+    <div className="newPackage">
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        {/* <div className="top">
-          <h1>{title}</h1>
-        </div> */}
+        {/* TOP */}
+        <div className="top">
+          <div className="left">
+            <h1>Uploaded Images</h1>
+            <div className="imageList">
+              {files &&
+                Array.from(files).map((file) => (
+                  <img
+                    className="itemImg"
+                    src={URL.createObjectURL(file)}
+                    alt=""
+                    key={file.name}
+                    onClick={() => {
+                      const newWindow = window.open(
+                        URL.createObjectURL(file),
+                        "_blank"
+                      );
+                      newWindow.focus();
+                    }}
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
+        {/* BOTTOM */}
         <div className="bottom">
           <div className="left">
             <h1>{title}</h1>
@@ -78,6 +157,16 @@ const NewPackage = ({ inputs, title }) => {
                 style={{ display: "none" }}
               />
             </div>
+            <div className="formInput">
+              <button
+                className="remove"
+                onClick={() => {
+                  setFiles("");
+                }}
+              >
+                Remove All Images
+              </button>
+            </div>
           </div>
           <div className="right">
             <form>
@@ -99,17 +188,10 @@ const NewPackage = ({ inputs, title }) => {
                   <option value={true}>Yes</option>
                 </select>
               </div>
-              <div className="selectFacilities">
-                <div className="formInput">
-                  <label>Facilities</label>
-                  <textarea
-                    onChange={(e) => setFacilities(e.target.value.split(","))}
-                    placeholder="give comma between seat numbers."
-                  />
-                </div>
-              </div>
-              <button onClick={handleClick}>Create Package</button>
             </form>
+            <button onClick={handleClick}>Create Package</button>
+            <br />
+            <p className="updatingStatus">{updatingStatus}</p>
           </div>
         </div>
       </div>

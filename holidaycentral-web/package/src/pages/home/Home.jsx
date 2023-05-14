@@ -1,5 +1,6 @@
 import Featured from "../../components/featured/Featured";
-import FeaturedPackages from "../../components/featuredPackages/FeaturedPackages";
+import FeaturedProperties from "../../components/featuredProperties/featuredProperties";
+
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
@@ -13,10 +14,11 @@ const Home = () => {
       <Navbar />
       <Header />
       <div className="homeContainer">
-      <h1 className="homeTitle">Or Browse By Package Types</h1>
+      <h1 className="homeTitle">Our Package Types</h1>
         <Featured />
-        <h1 className="homeTitle">Best Rated Packages in Holiday Central</h1>
-        <FeaturedPackages />
+        <h1 className="homeTitle"></h1>
+        <h1 className="homeTitle">Best Rated Packages in Holiday Central</h1> 
+        <FeaturedProperties />
         <MailList />
         <Footer />
       </div>

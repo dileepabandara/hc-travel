@@ -10,17 +10,7 @@ import useFetch from "../../hooks/useFetch";
 
 const List = () => {
   const location = useLocation();
-  const [name,setName]= useState(location.state.name);
-  const [description, setDescription]=useState(location.state.description);
   const [destination, setDestination] = useState(location.state.destination);
-  const [duration, setDuration] = useState(location.state.duration);
-  const [travelers, setTravelers]= useState(location.state.travelers);
-  const [specialty, setSpecialty]= useState(location.state.specialty);
-  const [facilities, setFacilities]= useState(location.state.facilities);
-  const [rating, setRating]= useState(location.state.rating);
-  const [price, setPrice]= useState(location.state.price);
-  const [photos, setPhotos]= useState(location.state.photos);
-  const [featured, setFeatured] = useState(location.state.featured);
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
@@ -29,11 +19,15 @@ const List = () => {
 
 
   const { data, loading, error, reFetch } = useFetch(
-    `http://localhost:8090/api/packages?destination=${destination}` );
+    `http://localhost:8090/api/packages?destination=${destination}&min=${min || 0}&max=${
+      max || 99999999
+    }`
+  );
 
   const handleClick = () => {
     reFetch();
   };
+
 
   return (
     <div>
@@ -70,6 +64,8 @@ const List = () => {
                   </span>
                   <input
                     type="number"
+                    min={1}
+                  
                     onChange={(e) => setMin(e.target.value)}
                     className="lsOptionInput"
                   />
@@ -80,12 +76,14 @@ const List = () => {
                   </span>
                   <input
                     type="number"
+                    min={1}
+                    max={99999999999}
                     onChange={(e) => setMax(e.target.value)}
                     className="lsOptionInput"
                   />
                 </div>
                 <div className="lsOptionItem">
-                  <span className="lsOptionText">Adult</span>
+                  <span className="lsOptionText">No of people</span>
                   <input
                     type="number"
                     min={1}
@@ -94,32 +92,16 @@ const List = () => {
                   />
                 </div>
                 <div className="lsOptionItem">
-                  <span className="lsOptionText">Children</span>
+                  <span className="lsOptionText">Rating out 0f 10 </span>
                   <input
                     type="number"
                     min={0}
+                    max={10}
                     className="lsOptionInput"
                     placeholder={options.children}
                   />
                 </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Room</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.room}
-                  />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Specialty</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.specialty}
-                  />
-                </div>
+                
               </div>
             </div>
             <button onClick={handleClick}>Search</button>

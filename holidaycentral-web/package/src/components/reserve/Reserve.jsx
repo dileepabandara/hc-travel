@@ -8,10 +8,10 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, packageId }) => {
+const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(
-    `http://localhost:8090/api/packages/package/${packageId}`
+    `http://localhost:8090/api/hotels/room/${hotelId}`
   );
   const { dates } = useContext(SearchContext);
 
@@ -58,7 +58,7 @@ const Reserve = ({ setOpen, packageId }) => {
       await Promise.all(
         selectedRooms.map((roomId) => {
           const res = axios.put(
-            `http://localhost:8090/api/packages/availability/${roomId}`,
+            `http://localhost:8090/api/rooms/availability/${roomId}`,
             {
               dates: alldates,
             }

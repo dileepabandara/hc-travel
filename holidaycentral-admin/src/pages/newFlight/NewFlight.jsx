@@ -10,6 +10,7 @@ const NewFlight = ({ inputs, title }) => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [seats, setSeats] = useState([]);
+  const [updatingStatus, setUpdatingStatus] = useState("Ready to create!");
 
   const { data, loading } = useFetch("/seats");
 
@@ -27,8 +28,73 @@ const NewFlight = ({ inputs, title }) => {
 
   console.log(files);
 
+  // Validation
+
+  const validate = () => {
+    if (!info.name) {
+      setUpdatingStatus("Name is required!");
+      return false;
+    }
+    if (!info.title) {
+      setUpdatingStatus("Title is required!");
+      return false;
+    }
+    if (!info.description) {
+      setUpdatingStatus("Description is required!");
+      return false;
+    }
+    if (!info.airline) {
+      setUpdatingStatus("Airline is required!");
+      return false;
+    }
+    if (!info.departureDestination) {
+      setUpdatingStatus("Departure Destination is required!");
+      return false;
+    }
+    if (!info.departureDate) {
+      setUpdatingStatus("Departure date is required!");
+      return false;
+    }
+    if (!info.arrivalDestination) {
+      setUpdatingStatus("Arrival Destination is required!");
+      return false;
+    }
+    if (!info.arrivalDate) {
+      setUpdatingStatus("Arrival date is required!");
+      return false;
+    }
+    if (!info.cabinClass) {
+      setUpdatingStatus("Cabin class is required!");
+      return false;
+    }
+    if (!info.duration) {
+      setUpdatingStatus("Duration is required!");
+      return false;
+    }
+    if (!info.price) {
+      setUpdatingStatus("Price is required!");
+      return false;
+    }
+    if (!info.featured) {
+      setUpdatingStatus("Featured is required!");
+      return false;
+    }
+    if (seats.length === 0) {
+      setUpdatingStatus("At least one seat is required!");
+      return false;
+    }
+    if (files.length === 0) {
+      setUpdatingStatus("At least one image is required!");
+      return false;
+    }
+    return true;
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
+    console.log(info);
+    if (!validate()) return;
+    setUpdatingStatus("Creating flight...");
     try {
       const list = await Promise.all(
         Object.values(files).map(async (file) => {
@@ -52,19 +118,41 @@ const NewFlight = ({ inputs, title }) => {
       };
 
       await axios.post("/flights", newFlight);
+      setUpdatingStatus("Flight has been created!");
     } catch (err) {
       console.log(err);
+      setUpdatingStatus(err.response.data.message);
     }
   };
 
   return (
-    <div className="new">
+    <div className="newFlight">
       <Sidebar />
       <div className="newContainer">
         <Navbar />
-        {/* <div className="top">
-          <h1>{title}</h1>
-        </div> */}
+        <div className="top">
+          <div className="left">
+            <h1>Uploaded Images</h1>
+            <div className="imageList">
+              {files &&
+                Array.from(files).map((file) => (
+                  <img
+                    className="itemImg"
+                    src={URL.createObjectURL(file)}
+                    alt=""
+                    key={file.name}
+                    onClick={() => {
+                      const newWindow = window.open(
+                        URL.createObjectURL(file),
+                        "_blank"
+                      );
+                      newWindow.focus();
+                    }}
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
         <div className="bottom">
           <div className="left">
             <h1>{title}</h1>
@@ -88,6 +176,16 @@ const NewFlight = ({ inputs, title }) => {
                 onChange={(e) => setFiles(e.target.files)}
                 style={{ display: "none" }}
               />
+            </div>
+            <div className="formInput">
+              <button
+                className="remove"
+                onClick={() => {
+                  setFiles("");
+                }}
+              >
+                Remove All Images
+              </button>
             </div>
           </div>
           <div className="right">
@@ -123,8 +221,10 @@ const NewFlight = ({ inputs, title }) => {
                       ))}
                 </select>
               </div>
-              <button onClick={handleClick}>Create Seat</button>
+              <button onClick={handleClick}>Create Flight</button>
             </form>
+            <br />
+            <p className="updatingStatus">{updatingStatus}</p>
           </div>
         </div>
       </div>

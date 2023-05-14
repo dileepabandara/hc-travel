@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
+import logo from "../../assets/logo_r.png";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -41,6 +42,8 @@ const Login = () => {
 
   return (
     <div className="lContainer">
+      {/* Add logo_r.png */}
+      <img src={logo} alt="" className="lImg" />
       <h2 className="lTitle">HolidayCentral | Backoffice</h2>
       <div className="login">
         <div className="lContainer">

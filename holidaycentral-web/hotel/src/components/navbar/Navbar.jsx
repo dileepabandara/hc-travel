@@ -4,19 +4,17 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { ReserveContext } from "../../context/ReserveContext";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(AuthContext);
-  const [cart, setCart] = useState([]);
+  const { cartCount, addToCart, removeItem, total } =
+    useContext(ReserveContext);
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
-
-  const quantity = useSelector((state) => state.cart.quantity);
-  console.log(quantity);
 
   return (
     <div className="navbar">
@@ -26,10 +24,16 @@ const Navbar = () => {
         </Link>
         {user ? (
           <div className="navItems">
-            <span className="cartIcon">
+            <Link to="/cart">
               <FontAwesomeIcon className="icons" icon={faCartShopping} />
+            </Link>
+            <span className="cartNumber">
+              {cartCount > 0 ? (
+                <span className="cart-count-badge">{cartCount}</span>
+              ) : (
+                <span className="cart-count-badge">0</span>
+              )}
             </span>
-            <span className="cartNumber">0</span>
 
             <button className="navButton">{user.details.username}</button>
             <button className="navButton" onClick={handleLogout}>
@@ -38,7 +42,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="navItems">
-            <button className="navButton">Register</button>
+            {/* <button className="navButton">Register</button> */}
             <Link to="/login">
               <button className="navButton">Login</button>
             </Link>

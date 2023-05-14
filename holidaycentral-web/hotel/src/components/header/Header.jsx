@@ -85,7 +85,7 @@ const Header = ({ type }) => {
             </p>
             {!user && (
               <Link to="/login">
-                <button className="headerBtn">Sign in / Register</button>
+                <button className="headerBtn">Sign in</button>
               </Link>
             )}
             <div className="headerSearch">

@@ -87,7 +87,7 @@ const Header = ({ type }) => {
             <p className="headerDesc">
             Save up to 10%* on fares, when you book your flights onlinec
             </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            {!user && <button className="headerBtn">Sign in</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

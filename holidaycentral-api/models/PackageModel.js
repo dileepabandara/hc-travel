@@ -26,18 +26,14 @@ const packageSchema = new Schema(
       type: String,
       required: true,
     },
-    facilities: {
-      type: [String],
+    price: {
+      type: Number,
       required: true,
     },
     rating: {
       type: Number,
       min: 0,
       max: 5,
-    },
-    price: {
-      type: Number,
-      required: true,
     },
     photos: {
       type: [String],

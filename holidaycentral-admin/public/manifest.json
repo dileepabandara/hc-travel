@@ -1,0 +1,15 @@
+{
+  "short_name": "HolidayCentral | Backoffice",
+  "name": "HolidayCentral Backoffice",
+  "icons": [
+    {
+      "src": "logo_r.png",
+      "type": "image/png",
+      "sizes": "500x500"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#f14e4c",
+  "background_color": "#ffffff"
+}

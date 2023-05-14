@@ -1,4 +1,4 @@
-.new {
+.newUser {
   width: 100%;
   display: flex;
 
@@ -14,8 +14,8 @@
       display: flex;
 
       h1 {
-        color: lightgray;
-        font-size: 20px;
+        color: rgb(139, 139, 139);
+        font-size: 16px;
         margin-bottom: 20px;
       }
 
@@ -25,11 +25,17 @@
         padding: 20px;
 
         img {
-          width: 100px;
-          height: 100px;
+          width: 150px;
+          height: 150px;
           border-radius: 50%;
           object-fit: cover;
           margin-bottom: 10px;
+        }
+
+        .formInput {
+          .icon {
+            cursor: pointer;
+          }
         }
       }
 
@@ -68,10 +74,14 @@
             width: 150px;
             padding: 10px;
             border: none;
-            background-color: teal;
+            background-color: #f14e4c;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+          }
+          .updatingStatus {
             margin-top: 10px;
           }
         }

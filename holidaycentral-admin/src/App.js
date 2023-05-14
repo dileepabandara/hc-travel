@@ -1,7 +1,12 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
-import Single from "./pages/single/Single";
+import SingleUser from "./pages/singleUser/SingleUser";
+import SingleFlight from "./pages/singleFlight/SingleFlight";
+import SingleHotel from "./pages/singleHotel/SingleHotel";
+import SinglePackage from "./pages/singlePackage/SinglePackage";
+import SingleRoom from "./pages/singleRoom/SingleRoom";
+import SingleSeat from "./pages/singleSeat/SingleSeat";
 import NewUser from "./pages/newUser/NewUser";
 import NewHotel from "./pages/newHotel/NewHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
@@ -70,7 +75,7 @@ function App() {
                 path=":userId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleUser />
                   </ProtectedRoute>
                 }
               />
@@ -79,6 +84,32 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewUser inputs={userInputs} title="Add New User" />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="flights">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={flightColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":flightId"
+                element={
+                  <ProtectedRoute>
+                    <SingleFlight />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewFlight inputs={flightInputs} title="Add New Flight" />
                   </ProtectedRoute>
                 }
               />
@@ -96,7 +127,7 @@ function App() {
                 path=":hotelId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleHotel />
                   </ProtectedRoute>
                 }
               />
@@ -122,7 +153,7 @@ function App() {
                 path=":roomId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleRoom />
                   </ProtectedRoute>
                 }
               />
@@ -131,32 +162,6 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewRoom inputs={roomInputs} title="Add New Room" />
-                  </ProtectedRoute>
-                }
-              />
-            </Route>
-            <Route path="flights">
-              <Route
-                index
-                element={
-                  <ProtectedRoute>
-                    <List columns={flightColumns} />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path=":flightId"
-                element={
-                  <ProtectedRoute>
-                    <Single />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoute>
-                    <NewFlight inputs={flightInputs} title="Add New Flight" />
                   </ProtectedRoute>
                 }
               />
@@ -174,7 +179,7 @@ function App() {
                 path=":seatId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SingleSeat />
                   </ProtectedRoute>
                 }
               />
@@ -200,7 +205,7 @@ function App() {
                 path=":packageId"
                 element={
                   <ProtectedRoute>
-                    <Single />
+                    <SinglePackage />
                   </ProtectedRoute>
                 }
               />

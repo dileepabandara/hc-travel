@@ -8,11 +8,12 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Reserve = ({ setOpen, hotelId }) => {
-  const [selectedRooms, setSelectedRooms] = useState([]);
+const Reserve = ({ setOpen, Id }) => {
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const { data, loading, error } = useFetch(
-    `http://localhost:8090/api/hotels/room/${hotelId}`
+    `http://localhost:8090/api/flights/seat/${Id}`
   );
+  console.log(data);
   const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
@@ -44,10 +45,10 @@ const Reserve = ({ setOpen, hotelId }) => {
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
-    setSelectedRooms(
+    setSelectedSeats(
       checked
-        ? [...selectedRooms, value]
-        : selectedRooms.filter((item) => item !== value)
+        ? [...selectedSeats, value]
+        : selectedSeats.filter((item) => item !== value)
     );
   };
 
@@ -56,7 +57,7 @@ const Reserve = ({ setOpen, hotelId }) => {
   const handleClick = async () => {
     try {
       await Promise.all(
-        selectedRooms.map((roomId) => {
+        selectedSeats.map((roomId) => {
           const res = axios.put(
             `http://localhost:8090/api/rooms/availability/${roomId}`,
             {
@@ -78,7 +79,7 @@ const Reserve = ({ setOpen, hotelId }) => {
           className="rClose"
           onClick={() => setOpen(false)}
         />
-        <span>Select your rooms:</span>
+        <span>Select your Seats:</span>
         {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
@@ -89,7 +90,7 @@ const Reserve = ({ setOpen, hotelId }) => {
               </div>
               <div className="rPrice">{item.price}</div>
             </div>
-            <div className="rSelectRooms">
+            <div className="rSelectseat">
               {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>

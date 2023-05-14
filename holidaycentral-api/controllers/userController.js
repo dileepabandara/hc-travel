@@ -36,7 +36,13 @@ export const updateUser = async (req, res, next) => {
     // check if user id not found
     if (err.path === "_id")
       next(createError(404, `User ${req.body._id} not found!`));
-    // check if data duplicate
+    // check if username duplicate
+    else if (
+      err.code === 11000 &&
+      err.message.includes(`username: "${req.body.username}"`)
+    )
+      next(createError(400, `Username ${req.body.username} already exists!`));
+    // check if email duplicate
     else if (
       err.code === 11000 &&
       err.message.includes(`email: "${req.body.email}"`)

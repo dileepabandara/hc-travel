@@ -18,9 +18,19 @@ export const userColumns = [
     },
   },
   {
+    field: "firstName",
+    headerName: "First Name",
+    width: 150,
+  },
+  {
+    field: "lastName",
+    headerName: "Last Name",
+    width: 150,
+  },
+  {
     field: "role",
     headerName: "Role",
-    width: 160,
+    width: 150,
     renderCell: (params) => {
       return (
         <div className={`cellWithRole ${params.row.role}`}>
@@ -28,6 +38,11 @@ export const userColumns = [
         </div>
       );
     },
+  },
+  {
+    field: "city",
+    headerName: "City",
+    width: 150,
   },
   {
     field: "_id",
@@ -46,34 +61,14 @@ export const userColumns = [
   },
 ];
 
-// Hotels
-export const hotelColumns = [
+// Flights
+export const flightColumns = [
   { field: "_id", headerName: "ID", width: 220 },
   {
     field: "name",
     headerName: "Name",
-    width: 150,
+    width: 120,
   },
-  {
-    field: "type",
-    headerName: "Type",
-    width: 100,
-  },
-  {
-    field: "title",
-    headerName: "Title",
-    width: 230,
-  },
-  {
-    field: "city",
-    headerName: "City",
-    width: 150,
-  },
-];
-
-// Rooms
-export const roomColumns = [
-  { field: "_id", headerName: "ID", width: 220 },
   {
     field: "title",
     headerName: "Title",
@@ -82,62 +77,78 @@ export const roomColumns = [
   {
     field: "description",
     headerName: "Description",
-    width: 300,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    width: 100,
-  },
-  {
-    field: "maxPeople",
-    headerName: "Max People",
-    width: 100,
-  },
-];
-
-// Flights
-export const flightColumns = [
-  { field: "_id", headerName: "ID", width: 220 },
-  {
-    field: "name",
-    headerName: "Name",
     width: 150,
   },
   {
-    field: "title",
-    headerName: "Title",
-    width: 150,
-  },
-  {
-    field: "arline",
+    field: "airline",
     headerName: "Airline",
-    width: 150,
+    width: 100,
   },
   {
     field: "departureDestination",
     headerName: "Departure",
-    width: 150,
+    width: 100,
+  },
+  {
+    field: "departureDate",
+    headerName: "Departure Date",
+    width: 120,
+    valueGetter: (params) => {
+      const departureDate = params.row.departureDate;
+      if (departureDate) {
+        return departureDate.slice(0, 10);
+      } else {
+        return params.row.departureDate;
+      }
+    },
   },
   {
     field: "arrivalDestination",
     headerName: "Arrival",
-    width: 150,
+    width: 100,
+  },
+  {
+    field: "arrivalDate",
+    headerName: "Arrival Date",
+    width: 120,
+    valueGetter: (params) => {
+      const arrivalDate = params.row.arrivalDate;
+      if (arrivalDate) {
+        return arrivalDate.slice(0, 10);
+      } else {
+        return params.row.arrivalDate;
+      }
+    },
   },
   {
     field: "cabinClass",
     headerName: "Cabin Class",
-    width: 150,
+    width: 100,
+  },
+  {
+    field: "seats",
+    headerName: "Total Seats",
+    width: 100,
+    valueGetter: (params) =>
+      params.row.seats ? params.row.seats.length : "No Seats",
   },
   {
     field: "duration",
     headerName: "Duration",
-    width: 150,
+    width: 100,
   },
   {
     field: "price",
     headerName: "Price",
-    width: 150,
+    width: 100,
+  },
+  {
+    field: "featured",
+    headerName: "Featured",
+    width: 80,
+    valueGetter: (params) => {
+      return params.row.featured ? "Yes" : "No";
+    },
   },
 ];
 
@@ -175,8 +186,8 @@ export const seatColumns = [
   },
 ];
 
-// Packages
-export const packageColumns = [
+// Hotels
+export const hotelColumns = [
   { field: "_id", headerName: "ID", width: 220 },
   {
     field: "name",
@@ -184,47 +195,142 @@ export const packageColumns = [
     width: 150,
   },
   {
+    field: "title",
+    headerName: "Title",
+    width: 230,
+  },
+  {
     field: "description",
     headerName: "Description",
+    width: 230,
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithType ${params.row.type}`}>
+          {params.row.type}
+        </div>
+      );
+    },
+  },
+  {
+    field: "city",
+    headerName: "City",
     width: 150,
+  },
+  {
+    field: "stars",
+    headerName: "Stars",
+    width: 100,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 100,
+  },
+  {
+    field: "featured",
+    headerName: "Featured",
+    width: 80,
+    valueGetter: (params) => {
+      return params.row.featured ? "Yes" : "No";
+    },
+  },
+];
+
+// Rooms
+export const roomColumns = [
+  { field: "_id", headerName: "ID", width: 220 },
+  {
+    field: "title",
+    headerName: "Title",
+    width: 120,
+  },
+  {
+    field: "description",
+    headerName: "Description",
+    width: 300,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    width: 100,
+  },
+  {
+    field: "maxPeople",
+    headerName: "Max People",
+    width: 100,
+  },
+  {
+    field: "roomNumbers",
+    headerName: "Room Numbers",
+    width: 150,
+    valueGetter: (params) =>
+      params.row.roomNumbers
+        ? params.row.roomNumbers.map((room) => room.number).join(", ")
+        : "",
+  },
+];
+
+// Packages
+export const packageColumns = [
+  { field: "_id", headerName: "ID", width: 220 },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 120,
+  },
+  {
+    field: "description",
+    headerName: "Description",
+    width: 100,
   },
   {
     field: "destination",
     headerName: "Destination",
-    width: 150,
+    width: 120,
   },
   {
     field: "duration",
     headerName: "Duration",
-    width: 150,
+    width: 100,
   },
   {
     field: "travelers",
     headerName: "Travelers",
-    width: 150,
+    width: 100,
   },
   {
     field: "specialty",
     headerName: "Specialty",
     width: 150,
-  },
-  {
-    field: "facilities",
-    headerName: "Facilities",
-    width: 150,
-    valueGetter: (params) =>
-      params.row.facilities
-        ? params.row.facilities.map((facility) => facility.number).join(", ")
-        : "",
-  },
-  {
-    field: "rating",
-    headerName: "Rating",
-    width: 150,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithSpecialty ${params.row.specialty}`}>
+          {params.row.specialty}
+        </div>
+      );
+    },
   },
   {
     field: "price",
     headerName: "Price",
-    width: 150,
+    width: 100,
+  },
+  {
+    field: "rating",
+    headerName: "Rating",
+    width: 100,
+  },
+  {
+    field: "featured",
+    headerName: "Featured",
+    width: 80,
+    valueGetter: (params) => {
+      return params.row.featured ? "Yes" : "No";
+    },
   },
 ];

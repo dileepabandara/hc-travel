@@ -157,7 +157,7 @@ export const flightInputs = [
     placeholder: "Flight around the beach surrounded by coconut trees and sun",
   },
   {
-    id: "arline",
+    id: "airline",
     label: "Airline",
     type: "text",
     placeholder: "ABC Airline",
@@ -201,7 +201,7 @@ export const flightInputs = [
   {
     id: "price",
     label: "Price",
-    type: "text",
+    type: "number",
     placeholder: "5000",
   },
 ];
@@ -217,7 +217,7 @@ export const seatInputs = [
   {
     id: "price",
     label: "Price",
-    type: "text",
+    type: "number",
     placeholder: "100",
   },
   {
@@ -229,7 +229,7 @@ export const seatInputs = [
   {
     id: "maxPeople",
     label: "Max People",
-    type: "text",
+    type: "number",
     placeholder: "5",
   },
 ];
@@ -241,12 +241,6 @@ export const packageInputs = [
     label: "Name",
     type: "text",
     placeholder: "My Package",
-  },
-  {
-    id: "title",
-    label: "Title",
-    type: "text",
-    placeholder: "The best Package",
   },
   {
     id: "description",
@@ -268,24 +262,31 @@ export const packageInputs = [
   },
   {
     id: "travelers",
-    label: "Travelers",
+    label: "No. of Travelers",
     type: "number",
   },
   {
     id: "specialty",
     label: "Specialty",
-    type: "text",
-    placeholder: "Honeymoon",
+    type: "select",
+    options: [
+      "Honeymoon",
+      "BeachHoliday",
+      "WildlifeExcursion",
+      "FamilyHoliday",
+      "Desert",
+    ],
   },
   {
     id: "price",
     label: "Price",
-    type: "text",
+    type: "number",
     placeholder: "5000",
   },
   {
     id: "rating",
     label: "Rating",
     type: "number",
+    placeholder: "5",
   },
 ];

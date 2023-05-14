@@ -1,11 +1,42 @@
-.new {
+.newPackage {
   width: 100%;
   display: flex;
 
   .newContainer {
     flex: 6;
 
-    .top,
+    .top {
+      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      padding: 20px;
+      margin: 20px;
+      display: flex;
+
+      h1 {
+        color: rgb(139, 139, 139);
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .left {
+        flex: 1;
+        position: relative;
+        .imageList {
+          display: flex;
+          gap: 20px;
+
+          .itemImg {
+            width: 100px;
+            height: 100px;
+            border-radius: 5%;
+            object-fit: cover;
+            margin-right: 10px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
     .bottom {
       -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
       box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
@@ -14,8 +45,8 @@
       display: flex;
 
       h1 {
-        color: rgb(27, 27, 27);
-        font-size: 20px;
+        color: rgb(139, 139, 139);
+        font-size: 16px;
         margin-bottom: 20px;
       }
 
@@ -25,11 +56,26 @@
         padding: 20px;
 
         img {
-          width: 100px;
-          height: 100px;
+          width: 200px;
+          height: 200px;
           border-radius: 5%;
           object-fit: cover;
           margin-bottom: 10px;
+        }
+
+        .formInput {
+          .icon {
+            cursor: pointer;
+          }
+          .remove {
+            background-color: #d0d0d0;
+            color: rgb(39, 39, 39);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+          }
         }
       }
 
@@ -43,7 +89,7 @@
           gap: 30px;
           justify-content: space-between;
 
-          .selectFeatured{
+          .selectFeatured {
             width: 40%;
             padding: 5px;
 
@@ -58,10 +104,10 @@
             }
           }
 
-          .selectFacilities{
+          .selectFacilities {
             width: 92%;
 
-            select{
+            select {
               width: 100%;
               padding: 5px;
             }
@@ -87,17 +133,20 @@
               border-bottom: 1px solid gray;
             }
           }
-
-          button {
-            width: 150px;
-            padding: 10px;
-            border: none;
-            background-color: teal;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-          }
+        }
+        button {
+          width: 150px;
+          padding: 10px;
+          border: none;
+          background-color: #f14e4c;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 20px;
+          border-radius: 5px;
+        }
+        .updatingStatus {
+          margin-top: 10px;
         }
       }
     }

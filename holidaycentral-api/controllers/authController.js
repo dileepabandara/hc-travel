@@ -17,7 +17,18 @@ export const register = async (req, res, next) => {
     await newUser.save();
     res.status(201).send(`User ${req.body.username} created successfully!`);
   } catch (err) {
-    next(err);
+    if (
+      err.code === 11000 &&
+      err.message.includes(`username: "${req.body.username}"`)
+    )
+      next(createError(400, `Username ${req.body.username} already exists!`));
+    // check if email duplicate
+    else if (
+      err.code === 11000 &&
+      err.message.includes(`email: "${req.body.email}"`)
+    )
+      next(createError(400, `Email ${req.body.email} already exists!`));
+    else next(err);
   }
 };
 

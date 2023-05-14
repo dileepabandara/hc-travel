@@ -15,7 +15,7 @@ const flightSchema = new Schema(
       type: String,
       required: true,
     },
-    arline: {
+    airline: {
       type: String,
       required: true,
     },

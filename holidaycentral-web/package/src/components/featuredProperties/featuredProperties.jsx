@@ -1,9 +1,9 @@
 import useFetch from "../../hooks/useFetch";
-import "./featuredPackages.css";
+import "./featuredProperties.css";
 
-const FeaturedPackages = () => {
+const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:8090/api/packagess?featured=true"
+    "http://localhost:8090/api/packages?featured=true"
   );
 
   return (
@@ -32,4 +32,4 @@ const FeaturedPackages = () => {
   );
 };
 
-export default FeaturedPackages;
+export default FeaturedProperties;

@@ -1,5 +1,4 @@
 import "./widget.scss";
-// import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import FlightIcon from "@mui/icons-material/Flight";
@@ -16,32 +15,7 @@ const Widget = ({ type }) => {
   const { data: roomData } = useFetch("http://localhost:8090/api/rooms/");
   const { data: seatData } = useFetch("http://localhost:8090/api/seats/");
 
-  console.log(
-    "Hotel Length: ",
-    hotelData.length > 0 ? hotelData.length : "Loading data..."
-  );
-  console.log(
-    "Flight Length: ",
-    flightData.length > 0 ? flightData.length : "Loading data..."
-  );
-  console.log(
-    "Package Length: ",
-    packageData.length > 0 ? packageData.length : "Loading data..."
-  );
-  console.log(
-    "Room Length: ",
-    roomData.length > 0 ? roomData.length : "Loading data..."
-  );
-  console.log(
-    "Seat Length: ",
-    seatData.length > 0 ? seatData.length : "Loading data..."
-  );
-
   let dataER;
-
-  //temporary
-  // const amount = data.length;
-  // const diff = 20;
 
   switch (type) {
     case "hotel":
@@ -122,7 +96,6 @@ const Widget = ({ type }) => {
     case "user":
       dataER = {
         title: "Users",
-        //link: "See details",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -144,15 +117,8 @@ const Widget = ({ type }) => {
         <span className="subtitle">Available</span>
         <span className="title">{dataER.title}</span>
         <span className="counter">{dataER.amount}</span>
-        {/* <span className="link">{data.link}</span> */}
       </div>
-      <div className="right">
-        {/* <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
-        </div> */}
-        {dataER.icon}
-      </div>
+      <div className="right">{dataER.icon}</div>
     </div>
   );
 };
